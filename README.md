@@ -1,11 +1,10 @@
 # Permuter
 
-Permuter is a tool write in python that allows you to create a password list based
-on personal data about a person, like the name, the born date, the id, the pet name, any data that can be used to create a password permuting these data to generate a password list. This, like any password maker for BruteForce, may fail. So be smart and patient :).
+Permuter is a tool write in python that allows you to create a password list based on personal data about a person, like the name, the born date, the id, the pet name, any data that can be used to create a password permuting these data to generate a password list. This, like any password maker for BruteForce, may fail. So be smart and patient :).
 
 ### How to use?
 
-To use this tool you only need to have data about a person, then follow the next steps.
+To use this tool you only need to have data about a person, and then follow the next steps.
 
 ### Install
 
@@ -38,7 +37,7 @@ Usage: pyhton permuter.py [data 1] [data 2] [data 3] [data 4]... [data n]
 [+]Num of possible permutations: p
 
 [!]Creating file of passwords
-[!]File locate in: /root/Documentos/GitHub/Permuter/passw.txt
+[!]File locate in: /opt/Permuter/passw.txt
 [!]Writing...
 
 [!]File save successfully
