@@ -4,12 +4,12 @@ Permuter is a tool written in python that allows you to create a passwords lists
 
 ### How to use?
 
-To use this tool you only need to have data about a person, and then follow the next steps.
+To use this tool you only need to have basic data of a person, and then follow the next steps.
 
 ### Install
 
 ```
-$ git clone https://github.com/Grillet0xEB/permuter.git
+$ git clone https://github.com/carlosgrillet/permuter.git
 $ cd permuter
 $ pip install -r requirements.txt
 ```
@@ -26,7 +26,7 @@ Usage: pyhton permuter.py [data 1] [data 2] [data 3] [data 4]... [data n]
                                                   
 
 		Carlos Grillet
-		Version 0.1
+		Version 0.2
 
 
 [?]Add special chars[ - _ . ! ][y/n]:
