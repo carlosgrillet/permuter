@@ -51,8 +51,8 @@ def main():
 	gtr8chr = ''
 
 	try:
-		espChars = raw_input(bgColor.Yellow + "[?]Add special chars[" + bgColor.End + " - _ . ! " + bgColor.Yellow + "][y/n]:" + bgColor.End)
-		gtr8chr = raw_input(bgColor.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than 8 chars?[y/n]:" + bgColor.End)
+		espChars = input(bgColor.Yellow + "[?]Add special chars[" + bgColor.End + " - _ . ! " + bgColor.Yellow + "][y/n]:" + bgColor.End)
+		gtr8chr = input(bgColor.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than 8 chars?[y/n]:" + bgColor.End)
 		
 		if espChars.lower() == 'y':
 			n = len(sys.argv) + 3
@@ -88,7 +88,7 @@ def main():
 	time.sleep(2)
 	print (bgColor.Yellow + "[!]Writing..." + bgColor.End + "\n")
 
-	for r in xrange(2,4):
+	for r in range(2,4):
 		perms = itertools.permutations(data, r)
 		for x in perms:
 			if gtr8chr.lower() == 'n':
@@ -104,7 +104,7 @@ def main():
 
 def permsLess(data):
 	count = 0
-	for r in xrange(2,4):
+	for r in range(2,4):
 		perms = itertools.permutations(data, r)
 		for x in perms:
 			if len(str(''.join(x))) < 8:
