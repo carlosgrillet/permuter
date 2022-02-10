@@ -11,7 +11,7 @@ except ImportError as e:
     print("Try this ... pip install -r /path/to/requirements.txt")
     sys.exit()
 
-class bgColor:
+class bgc:
     Blue = '\033[36m'
     Purple = '\033[95m'
     Green = '\033[92m'
@@ -29,63 +29,63 @@ class info:
 def main():
 	Graph = Figlet(font='rounded')
 	GraphRender = Graph.renderText('Permuter')
-	print(bgColor.Purple + bgColor.Bold + GraphRender + bgColor.End)
-	print(bgColor.Red + bgColor.Bold + info.author + bgColor.End)
-	print(bgColor.Underline + bgColor.Red + info.version + bgColor.End)
+	print(bgc.Purple + bgc.Bold + GraphRender + bgc.End)
+	print(bgc.Red + bgc.Bold + info.author + bgc.End)
+	print(bgc.Underline + bgc.Red + info.version + bgc.End)
 	
 	if len(sys.argv) == 1:
-		helpBanner()
-		sys.exit()
+            helpBanner()
+            sys.exit()
 
 	if str(sys.argv[1]) == "--help":
-		helpBanner()
-		sys.exit()
+            helpBanner()
+            sys.exit()
 
 	if len(sys.argv) < 4:
-		print(bgColor.Red + bgColor.Bold + "\n\n[X]Need at least 3 items to generate the passwords" + bgColor.End)
-		print(bgColor.Yellow + bgColor.Bold + "[!]Try " + bgColor.End + bgColor.Blue + "python permuter.py --help" + bgColor.Yellow + bgColor.Bold + " to see the help banner")
-		time.sleep(4)
-		sys.exit()
+            print(bgc.Red + bgc.Bold + "\n\n[X]Need at least 3 items to generate the passwords" + bgc.End)
+            print(bgc.Yellow + bgc.Bold + "[!]Try " + bgc.End + bgc.Blue + "python permuter.py --help" + bgc.Yellow + bgc.Bold + " to see the help banner")
+            time.sleep(4)
+            sys.exit()
 
 	gtr8chr = ''
 
 	try:
-		espChars = input(bgColor.Yellow + "[?]Add special chars[" + bgColor.End + " - _ . ! * " + bgColor.Yellow + "][y/n]:" + bgColor.End)
-		gtr8chr = input(bgColor.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than 8 chars?[y/n]:" + bgColor.End)
+            espChars = input(bgc.Yellow + "[?]Add special chars[" + bgc.End + " - _ . ! * " + bgc.Yellow + "][y/n]:" + bgc.End)
+            gtr8chr = input(bgc.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than 8 chars?[y/n]:" + bgc.End)
 		
-		if espChars.lower() == 'y':
-			n = len(sys.argv) + 4
-			data = ['-', '_', '.', '!', '*']
-		else :
-			n = len(sys.argv) - 1
-			data = []
+            if espChars.lower() == 'y':
+                n = len(sys.argv) + 4
+                data = ['-', '_', '.', '!', '*']
+            else :
+                n = len(sys.argv) - 1
+                data = []
 
 	except KeyboardInterrupt as e:
-		print(bgColor.Red + bgColor.Bold + "\n\n[X]User abort" + bgColor.End)
-		time.sleep(1)
+            print(bgc.Red + bgc.Bold + "\n\n[X]User abort" + bgc.End)
+            time.sleep(1)
 		sys.exit()
 
 	point = 1
 	while len(data) < n:
-		data.append(sys.argv[point])
-		point += 1
+            data.append(sys.argv[point])
+            point += 1
 
 	if gtr8chr == 'y':
-		r = numOfPerms(n) - permsLess(data)
+            r = numOfPerms(n) - permsLess(data)
 	else:
-		r = numOfPerms(n)
+            r = numOfPerms(n)
 	
-	print("\n" + bgColor.Blue + "[+]Num of items to be permuted: " + bgColor.End + str(n))
-	print(bgColor.Blue + "[+]Num of possible permutations: " + bgColor.End + str(r) + "\n")
+	print("\n" + bgc.Blue + "[+]Num of items to be permuted: " + bgc.End + str(n))
+	print(bgc.Blue + "[+]Num of possible permutations: " + bgc.End + str(r) + "\n")
 	time.sleep(2)
 
-	print(bgColor.Yellow + "[!]Creating file of passwords" + bgColor.End)
+	print(bgc.Yellow + "[!]Creating file of passwords" + bgc.End)
 	time.sleep(2)
 
 	f = open('passw.txt', 'w')
-	print(bgColor.Yellow + "[!]File locate in: " + bgColor.Blue + os.getcwd() + "/" + bgColor.End + "passw.txt")
+	print(bgc.Yellow + "[!]File locate in: " + bgc.Blue + os.getcwd() + "/" + bgc.End + "passw.txt")
 	time.sleep(2)
-	print(bgColor.Yellow + "[!]Writing..." + bgColor.End + "\n")
+	print(bgc.Yellow + "[!]Writing..." + bgc.End + "\n")
 
 	for r in range(2,4):
             perms = itertools.permutations(data, r)
@@ -98,7 +98,7 @@ def main():
 
 	f.close()
 	time.sleep(2)
-	print(bgColor.Green + bgColor.Bold + "[!]File generated successfully" + bgColor.End)
+	print(bgc.Green + bgc.Bold + "[!]File generated successfully" + bgc.End)
 	print("\n\n")
 
 def permsLess(data):
@@ -120,7 +120,7 @@ def numOfPerms(n):
 
 def helpBanner():
     print("This is the help Banner\n")
-    print(bgColor.Purple + "Permuter" + bgColor.End + " allows you to create a password list based")
+    print(bgc.Purple + "Permuter" + bgc.End + " allows you to create a password list based")
     print("on personal data about a person, like the name, the")
     print("born date, the id permuting these data to generate a")
     print("password list\n")
