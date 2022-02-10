@@ -54,7 +54,7 @@ def main():
 		gtr8chr = input(bgColor.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than 8 chars?[y/n]:" + bgColor.End)
 		
 		if espChars.lower() == 'y':
-			n = len(sys.argv) + 3
+			n = len(sys.argv) + 4
 			data = ['-', '_', '.', '!', '*']
 		else :
 			n = len(sys.argv) - 1
