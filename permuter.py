@@ -22,7 +22,7 @@ class bgc:
     Bold = '\033[1m'
 
 class info:
-    version = "\t\tVersion 0.1\n\n"
+    version = "\t\tVersion 0.2\n\n"
     author = "\t\tCarlos Grillet"
 
 
