@@ -44,6 +44,6 @@ Usage: pyhton permuter.py [data 1] [data 2] [data 3] [data 4]... [data n]
 
 ### Example:
 ```
-pyhton permuter.py Carlos Grillet C G 07 1996 Ren       The order doesn't matter
+pyhton permuter.py name petName bornDate ID             The order doesn't matter
 pyhton permuter.py --help                               Show the help banner 
 ```
