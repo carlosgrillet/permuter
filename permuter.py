@@ -97,7 +97,7 @@ def main():
                         f.write(str(''.join(x)) + "\n")
 
 	f.close()
-	time.sleep(6)
+	time.sleep(2)
 	print(bgColor.Green + bgColor.Bold + "[!]File generated successfully" + bgColor.End)
 	print("\n\n")
 
