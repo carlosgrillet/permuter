@@ -126,7 +126,7 @@ def helpBanner():
     print("password list\n")
     print("Usage: pyhton permuter.py [data 1] [data 2] [data 3] [data 4]... [data n]\n")
     print("Example:")
-    print("pyhton permuter.py Carlos Grillet C G 07 1996 Ren       The order doesn't matter")
+    print("pyhton permuter.py Name petName bornDate ID             The order doesn't matter")
     print("pyhton permuter.py --help                               Show this banner \n")
 
 if __name__ == "__main__" :
