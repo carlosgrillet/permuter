@@ -25,85 +25,82 @@ class info:
     version = "\t\tVersion 0.2\n\n"
     author = "\t\tCarlos Grillet"
 
+n = 0
+strLen = 0
+
 
 def main():
-	Graph = Figlet(font='rounded')
-	GraphRender = Graph.renderText('Permuter')
-	print(bgc.Purple + bgc.Bold + GraphRender + bgc.End)
-	print(bgc.Red + bgc.Bold + info.author + bgc.End)
-	print(bgc.Underline + bgc.Red + info.version + bgc.End)
+    Graph = Figlet(font='rounded')
+    GraphRender = Graph.renderText('Permuter')
+    print(bgc.Purple + bgc.Bold + GraphRender + bgc.End)
+    print(bgc.Red + bgc.Bold + info.author + bgc.End)
+    print(bgc.Underline + bgc.Red + info.version + bgc.End)
 	
-	if len(sys.argv) == 1:
-            helpBanner()
-            sys.exit()
+    if len(sys.argv) == 1:
+        helpBanner()
+        sys.exit()
 
-	if str(sys.argv[1]) == "--help":
-            helpBanner()
-            sys.exit()
+    if str(sys.argv[1]) == "--help":
+        helpBanner()
+        sys.exit()
 
-	if len(sys.argv) < 4:
-            print(bgc.Red + bgc.Bold + "\n\n[X]Need at least 3 items to generate the passwords" + bgc.End)
-            print(bgc.Yellow + bgc.Bold + "[!]Try " + bgc.End + bgc.Blue + "python permuter.py --help" + bgc.Yellow + bgc.Bold + " to see the help banner")
-            time.sleep(4)
-            sys.exit()
+    if len(sys.argv) < 4:
+        print(bgc.Red + bgc.Bold + "\n\n[X]Need at least 3 items to generate the passwords" + bgc.End)
+        print(bgc.Yellow + bgc.Bold + "[!]Try " + bgc.End + bgc.Blue + "python permuter.py --help" + bgc.Yellow + bgc.Bold + " to see the help banner")
+        time.sleep(4)
+        sys.exit()
 
-	gtr8chr = ''
-
-	try:
-            espChars = input(bgc.Yellow + "[?]Add special chars[" + bgc.End + " - _ . ! * " + bgc.Yellow + "][y/n]:" + bgc.End)
-            gtr8chr = input(bgc.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than 8 chars?[y/n]:" + bgc.End)
+    try:
+        espChars = input(bgc.Yellow + "[?]Add special chars[" + bgc.End + " - _ . ! * " + bgc.Yellow + "][y/n]:" + bgc.End)
+        strLen = input(bgc.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than n chars n=" + bgc.End)
 		
-            if espChars.lower() == 'y':
-                n = len(sys.argv) + 4
-                data = ['-', '_', '.', '!', '*']
-            else :
-                n = len(sys.argv) - 1
-                data = []
+        if espChars.lower() == 'y':
+            n = len(sys.argv) + 5
+            data = ['-', '_', '.', '!', '*']
+        else :
+            n = len(sys.argv) - 1
+            data = []
 
-	except KeyboardInterrupt as e:
-            print(bgc.Red + bgc.Bold + "\n\n[X]User abort" + bgc.End)
-            time.sleep(1)
-		sys.exit()
+    except KeyboardInterrupt as e:
+        print(bgc.Red + bgc.Bold + "\n\n[X]User abort" + bgc.End)
+        time.sleep(1)
+        sys.exit()
 
-	point = 1
-	while len(data) < n:
-            data.append(sys.argv[point])
-            point += 1
+    point = 1
+    while len(data) < n:
+        data.append(sys.argv[point])
+        point += 1
 
-	if gtr8chr == 'y':
-            r = numOfPerms(n) - permsLess(data)
-	else:
-            r = numOfPerms(n)
+    #if gtr8chr == 'y':
+    #    r = numOfPerms(n) - permsLess(data)
+    #else:
+    #    r = numOfPerms(n)
 	
-	print("\n" + bgc.Blue + "[+]Num of items to be permuted: " + bgc.End + str(n))
-	print(bgc.Blue + "[+]Num of possible permutations: " + bgc.End + str(r) + "\n")
-	time.sleep(2)
+    print("\n" + bgc.Blue + "[+]Num of items to be permuted: " + bgc.End + str(n))
+    #print(bgc.Blue + "[+]Num of possible permutations: " + bgc.End + str(r) + "\n")
+    time.sleep(2)
 
-	print(bgc.Yellow + "[!]Creating file of passwords" + bgc.End)
-	time.sleep(2)
+    print(bgc.Yellow + "[!]Creating file of passwords" + bgc.End)
+    time.sleep(2)
 
-	f = open('passw.txt', 'w')
-	print(bgc.Yellow + "[!]File locate in: " + bgc.Blue + os.getcwd() + "/" + bgc.End + "passw.txt")
-	time.sleep(2)
-	print(bgc.Yellow + "[!]Writing..." + bgc.End + "\n")
+    f = open('passw.txt', 'w')
+    print(bgc.Yellow + "[!]File locate in: " + bgc.Blue + os.getcwd() + "/" + bgc.End + "passw.txt")
+    time.sleep(2)
+    print(bgc.Yellow + "[!]Writing..." + bgc.End + "\n")
 
-	for r in range(2,4):
-            perms = itertools.permutations(data, r)
-            for x in perms:
-                if gtr8chr.lower() == 'n':
-                    f.write(str(''.join(x)) + "\n")
-                else:
-                    if len(str(''.join(x))) >= 8:
-                        f.write(str(''.join(x)) + "\n")
+    for instanse in range(int(strLen),n+1):
+        perms = itertools.permutations(data, instanse)
+        for x in perms:
+            f.write(str(''.join(x)) + "\n")
 
-	f.close()
-	time.sleep(2)
-	print(bgc.Green + bgc.Bold + "[!]File generated successfully" + bgc.End)
-	print("\n\n")
+    f.close()
+    time.sleep(2)
+    print(bgc.Green + bgc.Bold + "[!]File generated successfully" + bgc.End)
+    print("\n\n")
 
 def permsLess(data):
     count = 0
-    for r in range(2,4):
+    for r in range(2,n):
         perms = itertools.permutations(data, r)
         for x in perms:
             if len(str(''.join(x))) < 8:
