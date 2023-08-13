@@ -26,7 +26,7 @@ Usage: pyhton permuter.py [data 1] [data 2] [data 3] [data 4]... [data n]
                                                   
 
 		Carlos Grillet
-		Version 0.2
+		Version 0.3
 
 
 [?]Add special chars[ - _ . ! ][y/n]:
@@ -43,7 +43,10 @@ Usage: pyhton permuter.py [data 1] [data 2] [data 3] [data 4]... [data n]
 ```
 
 ### Example:
+```bash
+python permuter.py --help
 ```
-pyhton permuter.py name petName bornDate ID             The order doesn't matter
-pyhton permuter.py --help                               Show the help banner 
+
+```bash
+python permuter.py first_name last_name born_date
 ```
