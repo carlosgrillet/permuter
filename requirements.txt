@@ -1,1 +1,6 @@
+os
+sys
+math
+time
 pyfiglet
+itertools
