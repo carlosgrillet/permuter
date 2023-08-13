@@ -1,123 +1,150 @@
+'''
+Este codigo fue creado por Carlos Grillet
+para el uso de la comunidad de seguridad Informatica
+con el fin de ayudar a la creacion de
+listas de contraseñas basadas en datos personales
+'''
+
+import os
+import sys
+import math
+import time
 try:
-    import os
-    import sys
-    import math
-    import time
     import itertools
     from pyfiglet import Figlet
-
 except ImportError as e:
-    print("Error: %s \n" % (e))
-    print("Try this ... pip install -r /path/to/requirements.txt")
+    print(f"Error: {e}")
+    print("Try this ... $ pip install -r /path/to/requirements.txt")
     sys.exit()
 
-class bgc:
+class Bgc:
+    '''
+    Esta clase contiene los colores para la terminal
+    '''
     Blue = '\033[36m'
-    Purple = '\033[95m'
-    Green = '\033[92m'
-    Yellow = '\033[93m'
-    Red = '\033[91m'
-    End = '\033[0m'
-    Underline = '\033[4m'
     Bold = '\033[1m'
+    End = '\033[0m'
+    Green = '\033[92m'
+    Purple = '\033[95m'
+    Red = '\033[91m'
+    Underline = '\033[4m'
+    Yellow = '\033[93m'
 
-class info:
-    version = "\t\tVersion 0.2\n\n"
+class Info:
+    '''
+    Esta clase contiene la Informacion del programa
+    '''
+    version = "\t\tVersion 0.3\n\n"
     author = "\t\tCarlos Grillet"
 
-n = 0
-strLen = 0
-
+N = 0
+STRLEN = 0
 
 def main():
-    Graph = Figlet(font='rounded')
-    GraphRender = Graph.renderText('Permuter')
-    print(bgc.Purple + bgc.Bold + GraphRender + bgc.End)
-    print(bgc.Red + bgc.Bold + info.author + bgc.End)
-    print(bgc.Underline + bgc.Red + info.version + bgc.End)
-	
+    '''
+    Esta funcion es la principal del programa 
+    '''
+    global N
+    global STRLEN
+
+    graph = Figlet(font='rounded')
+    graph_render = graph.renderText('Permuter')
+    print(Bgc.Purple + Bgc.Bold + graph_render + Bgc.End)
+    print(Bgc.Red + Bgc.Bold + Info.author + Bgc.End)
+    print(Bgc.Underline + Bgc.Red + Info.version + Bgc.End)
+
     if len(sys.argv) == 1:
-        helpBanner()
+        help_banner()
         sys.exit()
 
     if str(sys.argv[1]) == "--help":
-        helpBanner()
+        help_banner()
         sys.exit()
 
     if len(sys.argv) < 4:
-        print(bgc.Red + bgc.Bold + "\n\n[X]Need at least 3 items to generate the passwords" + bgc.End)
-        print(bgc.Yellow + bgc.Bold + "[!]Try " + bgc.End + bgc.Blue + "python permuter.py --help" + bgc.Yellow + bgc.Bold + " to see the help banner")
+        print(Bgc.Red + Bgc.Bold + \
+              "\n\n[X]Need at least 3 items to generate the passwords" + Bgc.End)
+        print(Bgc.Yellow + Bgc.Bold + "[!]Try " + Bgc.End + Bgc.Blue + \
+              "python permuter.py --help" + Bgc.Yellow + Bgc.Bold + \
+              " to see the help banner")
         time.sleep(4)
         sys.exit()
 
     try:
-        espChars = input(bgc.Yellow + "[?]Add special chars[" + bgc.End + " - _ . ! * " + bgc.Yellow + "][y/n]:" + bgc.End)
-        strLen = input(bgc.Yellow + '\033[1A' + '\033[36D' +"[?]Generate only passwords greater than n chars n=" + bgc.End)
-		
-        if espChars.lower() == 'y':
-            n = len(sys.argv) + 5
+        esp_chars = input(Bgc.Yellow + "[?]Add special chars[" + \
+                          Bgc.End + " - _ . ! * " + Bgc.Yellow + "][y/n]: " + \
+                          Bgc.End)
+        STRLEN = input(Bgc.Yellow + '\033[1A' + '\033[36D' + \
+                       "[?]Generate only passwords greater than n chars: n=" + \
+                       Bgc.End)
+
+        if esp_chars.lower() == 'y':
+            N = len(sys.argv) + 5
             data = ['-', '_', '.', '!', '*']
         else :
-            n = len(sys.argv) - 1
+            N = len(sys.argv) - 1
             data = []
 
-    except KeyboardInterrupt as e:
-        print(bgc.Red + bgc.Bold + "\n\n[X]User abort" + bgc.End)
+    except KeyboardInterrupt:
+        print(Bgc.Red + Bgc.Bold + "\n\n[X]User abort" + Bgc.End)
         time.sleep(1)
         sys.exit()
 
     point = 1
-    while len(data) < n:
+    while len(data) < N-1:
         data.append(sys.argv[point])
         point += 1
 
-    #if gtr8chr == 'y':
-    #    r = numOfPerms(n) - permsLess(data)
-    #else:
-    #    r = numOfPerms(n)
-	
-    print("\n" + bgc.Blue + "[+]Num of items to be permuted: " + bgc.End + str(n))
-    #print(bgc.Blue + "[+]Num of possible permutations: " + bgc.End + str(r) + "\n")
+    print("\n" + Bgc.Blue + "[+]Num of items to be permuted: " + Bgc.End + str(N))
     time.sleep(2)
 
-    print(bgc.Yellow + "[!]Creating file of passwords" + bgc.End)
+    print(Bgc.Yellow + "[!]Creating file of passwords" + Bgc.End)
     time.sleep(2)
 
-    f = open('passw.txt', 'w')
-    print(bgc.Yellow + "[!]File locate in: " + bgc.Blue + os.getcwd() + "/" + bgc.End + "passw.txt")
-    time.sleep(2)
-    print(bgc.Yellow + "[!]Writing..." + bgc.End + "\n")
+    with open('passw.txt', 'w', encoding='utf-8') as file:
+        print(Bgc.Yellow + "[!]File locate in: " + Bgc.Blue + \
+              os.getcwd() + "/" + Bgc.End + "passw.txt")
+        time.sleep(2)
+        print(Bgc.Yellow + "[!]Writing..." + Bgc.End + "\n")
 
-    for instanse in range(int(strLen),n+1):
-        perms = itertools.permutations(data, instanse)
-        for x in perms:
-            f.write(str(''.join(x)) + "\n")
+        for instanse in range(int(STRLEN),N+1):
+            perms = itertools.permutations(data, instanse)
+            for value in perms:
+                file.write(str(''.join(value)) + "\n")
 
-    f.close()
     time.sleep(2)
-    print(bgc.Green + bgc.Bold + "[!]File generated successfully" + bgc.End)
+    print(Bgc.Green + Bgc.Bold + "[!]File generated successfully" + Bgc.End)
     print("\n\n")
 
-def permsLess(data):
+def perms_less(data):
+    '''
+    Esta funcion genera las permutaciones de los datos
+    '''
     count = 0
-    for r in range(2,n):
-        perms = itertools.permutations(data, r)
-        for x in perms:
-            if len(str(''.join(x))) < 8:
+    for word_arange in range(2,N):
+        perms = itertools.permutations(data, word_arange)
+        for value in perms:
+            if len(str(''.join(value))) < 8:
                 count += 1
     return count
-		
-def numOfPerms(n):
+
+def num_of_perms(number):
+    '''
+    Esta funcion calcula el numero de permutaciones 
+    '''
     num = 2
     result = 0
     while num <= 4:
-        result += (math.factorial(n) / math.factorial(n - num))
+        result += (math.factorial(number) / math.factorial(number - num))
         num += 1
-    return (result)
+    return result
 
-def helpBanner():
+def help_banner():
+    '''
+    Esta funcion muestra el banner de ayuda 
+    '''
     print("This is the help Banner\n")
-    print(bgc.Purple + "Permuter" + bgc.End + " allows you to create a password list based")
+    print(Bgc.Purple + "Permuter" + Bgc.End + " allows you to create a password list based")
     print("on personal data about a person, like the name, the")
     print("born date, the id permuting these data to generate a")
     print("password list\n")
